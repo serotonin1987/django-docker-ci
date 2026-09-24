@@ -1,12 +1,15 @@
-FROM python:3.10-slim
+FROM python:3.12-slim
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /app
 
-RUN pip install flask
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Копируем код
-COPY app.py .
+COPY . .
 
-EXPOSE 5000
+EXPOSE 8000
 
-CMD ["python", "app.py"]
+CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
