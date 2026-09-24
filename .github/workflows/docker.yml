@@ -46,16 +46,18 @@ jobs:
       - name: Скачиваем код
         uses: actions/checkout@v4
 
-      - name: Устанавливаем Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          node-version: 18
+          python-version: '3.12'
 
       - name: Устанавливаем зависимости
-        run: npm install
-
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
       - name: Запускаем тесты
-        run: npm test
+        run: |
+          pytest
 
   # 2. BUILD (Сборка)
   build:
