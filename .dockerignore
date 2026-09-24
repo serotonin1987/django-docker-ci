@@ -1,0 +1,33 @@
+# Виртуальное окружение (в контейнере создаётся/используется своё)
+venv/
+.venv/
+env/
+
+# Кэш Python и скомпилированные файлы
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Служебные файлы Git и GitHub Actions
+.git/
+.gitignore
+.github/
+
+# Локальная база данных и миграции (если не нужны в образе)
+*.sqlite3
+*.db
+
+# Логи и временные файлы
+*.log
+.DS_Store
+Thumbs.db
+
+# Docker-файлы (сам Dockerfile не нужно копировать внутрь контейнера)
+Dockerfile
+.dockerignore
+docker-compose*.yml
+
+# Переменные окружения и секреты (КРИТИЧЕСКО ДЛЯ БЕЗОПАСНОСТИ!)
+.env
+.env.*
